@@ -13,5 +13,4 @@
 *.xml
 cobertura_coverage.xml
 
-bin/
 .idea/
