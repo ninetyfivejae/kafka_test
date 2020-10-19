@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	config := sarama.NewConfig()
 	config.Consumer.Return.Errors = true
 

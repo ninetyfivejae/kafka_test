@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-
 	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost"})
 	if err != nil {
 		panic(err)
@@ -30,7 +29,7 @@ func main() {
 	}()
 
 	// Produce messages to topic (asynchronously)
-	topic := "myTopic"
+	topic := "test"
 	for _, word := range []string{"Welcome", "to", "the", "Confluent", "Kafka", "Golang", "client"} {
 		p.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},

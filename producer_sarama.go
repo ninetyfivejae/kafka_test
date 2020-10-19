@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-
 	config := sarama.NewConfig()
 	config.Producer.RequiredAcks = sarama.WaitForAll
 	config.Producer.Retry.Max = 5
