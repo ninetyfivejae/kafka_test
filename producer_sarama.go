@@ -12,17 +12,14 @@ func main() {
 	config.Producer.Retry.Max = 5
 	config.Producer.Return.Successes = true
 
-	// brokers := []string{"192.168.59.103:9092"}
 	brokers := []string{"localhost:9092"}
 	producer, err := sarama.NewSyncProducer(brokers, config)
 	if err != nil {
-		// Should not reach here
 		panic(err)
 	}
 
 	defer func() {
 		if err := producer.Close(); err != nil {
-			// Should not reach here
 			panic(err)
 		}
 	}()

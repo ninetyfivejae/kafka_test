@@ -28,7 +28,6 @@ func main() {
 	}()
 
 	topic := "test"
-	// How to decide partition, is it fixed value...?
 	consumer, err := master.ConsumePartition(topic, 0, sarama.OffsetOldest)
 	if err != nil {
 		panic(err)

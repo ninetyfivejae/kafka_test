@@ -3,11 +3,11 @@ package main
 import (
 	"fmt"
 
-	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func main() {
-	c, err := kafka.NewConsumer(&kafka.ConfigMap{
+	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": "localhost",
 		"group.id":          "myGroup",
 		"auto.offset.reset": "earliest",
@@ -17,10 +17,10 @@ func main() {
 		panic(err)
 	}
 
-	c.SubscribeTopics([]string{"myTopic", "^aRegex.*[Tt]opic", "test"}, nil)
+	consumer.SubscribeTopics([]string{"test"}, nil)
 
 	for {
-		msg, err := c.ReadMessage(-1)
+		msg, err := consumer.ReadMessage(-1)
 		if err == nil {
 			fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
 		} else {
@@ -29,5 +29,5 @@ func main() {
 		}
 	}
 
-	c.Close()
+	consumer.Close()
 }
